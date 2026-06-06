@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build: ./frontend
+    ports:
+      # Host 5173 -> nginx :80. Matches the backend's CORS allow-list.
+      - "5173:80"
+    depends_on:
+      - backend
