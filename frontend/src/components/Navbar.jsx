@@ -13,7 +13,8 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="brand">
-        📘 MiniLMS
+        <span className="brand-mark">📘</span>
+        MiniLMS
       </Link>
       <div className="nav-links">
         {user ? (
@@ -21,7 +22,10 @@ export default function Navbar() {
             <Link to="/courses">Browse Courses</Link>
             {user.is_instructor && <Link to="/instructor">My Courses</Link>}
             <span className="role-badge">{user.role}</span>
-            <span className="username">{user.username}</span>
+            <span className="user-chip">
+              <span className="avatar">{user.username.charAt(0)}</span>
+              <span className="username">{user.username}</span>
+            </span>
             <button onClick={handleLogout} className="btn-link">
               Logout
             </button>
@@ -29,7 +33,9 @@ export default function Navbar() {
         ) : (
           <>
             <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/register" className="btn-primary" style={{ marginTop: 0 }}>
+              Get started
+            </Link>
           </>
         )}
       </div>
